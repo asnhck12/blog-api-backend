@@ -9,9 +9,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
-const User = require("../models/user");
+const User = require("./models/user");
 
-var indexRouter = require('../routes/index');
+var indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -27,11 +27,6 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
 
 app.use(cors());
 app.use(logger('dev'));
