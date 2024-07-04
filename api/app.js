@@ -9,9 +9,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
-const User = require("./models/user");
+const User = require("../models/user");
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('../routes/index');
 
 var app = express();
 
