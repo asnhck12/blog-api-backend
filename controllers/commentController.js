@@ -6,9 +6,6 @@ const Post = require("../models/post")
 // View comments
 exports.comment_get = asyncHandler(async (req, res, next) => {
     const postId = req.params.id;
-    // const filter = { post:postId };
-    // postId ? { post: postId } : {};
-    
     try {
         const allComments = await Comment.find({ post: postId}).sort({ timeStamp: -1 }).exec();
         res.json(allComments);
