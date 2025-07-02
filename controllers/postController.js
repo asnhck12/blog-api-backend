@@ -68,9 +68,6 @@ exports.post_create_send = [
   body("published").isBoolean().withMessage("Published must be a boolean"),
 
   asyncHandler(async (req, res, next) => {
-    console.log('✅ Route handler hit: /posts/new_post'); // <-- Add here
-
-
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -79,15 +76,12 @@ exports.post_create_send = [
 
     jwt.verify(req.token, process.env.jwtSecret, async (err, authData) => {
       if (err) {
-        return res.sendStatus(403); // Forbidden
+        return res.sendStatus(403);
       }
 
-      // Sanitize the post content using the allowed tags and attributes
       const sanitizedPost = sanitizeHtml(req.body.post, sanitizeOptions);
 
-      // Debug: log sanitized post content
-      console.log('Sanitized Post:', sanitizedPost);
-
+    
       const post = new Post({
         title: req.body.title,
         post: sanitizedPost,
